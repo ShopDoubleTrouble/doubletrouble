@@ -1,0 +1,75 @@
+<%= form_for :order,
+    url: populate_orders_path,
+    html:{
+      class:'product-form',
+    } do |f|
+  %>
+
+  <div id="inside-product-cart-form"
+    class="product-size space-top-15"
+    data-hook="inside_product_cart_form"
+    itemprop="offers"
+    itemscope itemtype="https://schema.org/Offer"
+    >
+
+    <% if product.variants_and_option_values(current_currency).any? %>
+
+      <%# Select variant %>
+      <div id="product-variants" class="form-group selectpicker-wrapper">
+
+        <label class="size-13">
+          <span class="font-2"><%= Spree.t(:variants) %></span>
+        </label>
+
+        <%= select_tag "variant_id",
+          options_for_variant_select(product, current_currency),
+          class:'form-control'
+          %>
+
+      </div>
+
+    <% else %>
+
+      <%# Single variant available. Just take the id. %>
+      <%= hidden_field_tag "variant_id", product.master.id %>
+
+    <% end %>
+
+    <div class="prod-btns space-top-20" data-hook="product_price">
+      <% if product.price_in(current_currency) && !product.price.nil? %>
+        <% if product.can_supply? %>
+          <div class="quantity">
+            <div class="btn minus" id="btn_minus">
+              <i class="icon_minus-06"></i>
+            </div>
+            <%= number_field_tag :quantity, 1, class: 'form-control qty', min: 1 %>
+            <div class="btn plus" id="btn_plus">
+              <i class="icon_plus"></i>
+            </div>
+          </div>
+
+          <div class="add-to-cart">
+            <%= button_tag class: 'theme-btn-1 btn cart-btn',
+              id: 'add-to-cart-button',
+              type: :submit do %>
+
+                <i class="icon ion-ios-plus-empty white-color size-24"></i>
+                <%= Spree.t(:add_to_cart) %>
+
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <div id="product-price">
+          <div>
+            <span class="price selling" itemprop="price">
+              <%= Spree.t(:product_not_available_in_this_currency) %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+  </div>
+<% end %>

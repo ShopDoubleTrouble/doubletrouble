@@ -16,6 +16,26 @@
 						= link_to '', :root,
 							:class => "toggle-icon icon-cube size-24"
 
+			.col-md-8.col-sm-12.top-right.text-right
+				%ul.top-elements
+					-# Social Links
+					- social_links.each do |sl|
+						%li
+							= link_to sl[:url], class:"size-24", target:"_blank" do
+								- icon_class = "ion-social-" + sl[:name].downcase
+								%i{:class => icon_class }
+
+					-# Toggle icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/togglehover'
+
+					-# Search icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/searchhover'
+
+					-# Shopping cart icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/carthover'
+
+			%hr.fullwidth-divider
+
 			.col-md-8.col-sm-12.navigation.font-2.text-left
 				%nav
 					.navbar-collapse.no-padding#primary-navigation
@@ -33,22 +53,3 @@
 								= nav_bar_taxon taxon.root, 5
 
 							%li= link_to Spree.t(:about), page_path('about')
-
-			.col-md-2.col-sm-6.top-right.text-right
-				%ul.top-elements
-
-					-# Search icon and hover dialog
-					= render partial:'spree/shared/nav_bar_partials/searchhover'
-
-					-# Shopping cart icon and hover dialog
-					= render partial:'spree/shared/nav_bar_partials/carthover'
-
-					-# Social Links
-					- social_links.each do |sl|
-						%li
-							= link_to sl[:url], class:"size-24", target:"_blank" do
-								- icon_class = "ion-social-" + sl[:name].downcase
-								%i{:class => icon_class }
-
-					-# Toggle icon and hover dialog
-					= render partial:'spree/shared/nav_bar_partials/togglehover'
