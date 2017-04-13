@@ -1,0 +1,134 @@
+/*
+  *= Sprockets
+  *
+  *= require jquery-ui
+  *= require_directory ./plugins
+  *= require prettyphoto-rails
+  *= require_self
+  */
+
+// Bootstrap Customizations
+$theme-color: #E91E63
+@import "variables"
+
+// SASS Dependencies
+@import "bootstrap-sprockets"
+@import "bootstrap"
+@import "font-awesome-sprockets"
+@import "font-awesome"
+@import "themes/main"
+
+// Hover color in the Top Menu
+.top-bar li a:hover
+  color: $theme-color
+
+.top-bar .primary-color
+  color: $theme-color
+  border: 1px solid $theme-color
+  border-radius: 2px
+  padding-left: 4px
+  padding-right: 4px
+  margin-left: 4px
+  margin-right: 4px
+
+.color-primary
+  color: $theme-color !important
+
+// Fixes
+ol.breadcrumb.breadcrumb-menubar
+  padding: 0px
+
+.breadcrumb-bg
+  background-image: image-url("breadcrumb.png")
+  background-position: 85% top
+  background-repeat: no-repeat
+
+//- Alert Dialogs - Use default mixins
+.alert-error
+  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text)
+.alert-notice
+  @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text)
+
+// Correct size for the navbar logo and container
+.logo.navbar-brand .navbar-logo
+  max-height: 25px
+#main-logo img
+  max-height: 250px
+
+@media (max-width:$screen-sm-min)
+  #main-logo
+    text-align: center
+    img
+      max-height: 200px
+
+// Correct size for the footer logo
+#logo img
+  max-height: 200px
+
+#btn_plus,
+#btn_minus
+  & > i
+    line-height: 52px
+
+#home
+
+  // Fix for font sizes being overriden
+  .title-1
+    &.size-14
+      font-size: 14px
+    &.size-13
+      font-size: 13px
+    &.size-18
+      font-size: 18px
+
+  .width-100p
+    width: 100%
+
+// Fix for caption not being centered
+.caption
+  text-align: center
+
+// Displays credit card logos
+.credit-card-image
+  background-image: image-url("credit_cards/credit_card.gif")
+  height: 54px
+  background-repeat: no-repeat
+  background-position: left center
+
+// Order Total Box
+.order-total
+  background-color: #efefef
+  color: #999
+  padding: 20px
+
+  // Align title with table
+  .section-title
+    padding: 8px
+
+  .table.order-summary
+
+    // Deactivates borders
+    & > tbody > tr:not(.order-summary-total) > td
+      border-top: none
+
+    // Aligns all money cells to the right
+    tr > td:nth-child(2)
+      text-align: right
+
+
+// Summary box in the Shopping Cart. This shows a border only in the subtotal line
+.table.cart-summary tr:not(.total-row) td
+  border-top: none
+
+@media print
+
+  // Fixes for order page printing
+  .theme-container
+    margin: auto
+    width: 95%
+    #order
+      font-size: 0.75em !important
+
+  // Remove the text after the links
+  a[href]:after
+    content: ''

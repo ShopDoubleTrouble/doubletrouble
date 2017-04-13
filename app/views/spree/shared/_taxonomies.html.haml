@@ -1,0 +1,7 @@
+- max_level = Spree::Config[:max_level_in_taxons_menu] || 1
+
+#taxonomies.widget-wrap.space-bottom-40{data:{hook:true}}
+	- @taxonomies.each do |taxonomy|
+		- cache [I18n.locale, taxonomy, max_level, @taxon] do
+			%h2.widget-title= Spree.t(:shop_by_taxonomy, :taxonomy => taxonomy.name)
+			.widget-content= dt_taxons_tree(taxonomy.root, @taxon, max_level)

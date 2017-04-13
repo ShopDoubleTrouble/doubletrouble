@@ -1,0 +1,33 @@
+- if @taxon && @taxon.parent
+	- @taxons = @taxon.parent.children.includes(:translations)
+- else
+	- @taxons = Spree::Taxon.roots.includes(:translations)
+
+= form_tag spree.products_path, :method => :get,
+	class: "navbar-form form-wrap" do
+
+	.search-selectpicker.selectpicker-wrapper.col-sm-4.col-xs-5.no-padding
+		- cache(cache_key_for_taxons) do
+
+			- options = options_for_select([[Spree.t(:all_departments),
+				'']] + @taxons.includes(:translations).map {|t| [t.name, t.id]},
+				@taxon ? @taxon.id : params[:taxon])
+
+			= select_tag :taxon,
+				options,
+				'aria-label': 'Taxon',
+				class: "selectpicker input-price",
+				data: {'live-search': "true",
+					width:"100%",
+					toggle:"tooltip"},
+				title:"All Categories"
+
+	.no-padding.col-sm-8.col-xs-7
+		.form-group
+			= search_field_tag :keywords,
+				params[:keywords],
+				:placeholder => Spree.t(:search),
+				class: "form-control text"
+
+			%button.form-control.submit-btn.black-arrow
+				%i.icon.ion-android-arrow-forward.size-24.black-arrow

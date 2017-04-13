@@ -1,0 +1,17 @@
+- @body_id = 'login'
+
+- content_for :breadcrumb_title do
+	= Spree.t :login_as_existing
+
+.col-md-6{class:(request.path == spree.login_path) ? "col-md-offset-3" : "" }
+	#existing-customer.panel-body{data:{hook:"login"}}
+		- if flash[:alert]
+			.alert.alert-danger= flash[:alert]
+		= render :partial => 'spree/shared/login'
+		.text-center
+			= Spree.t(:or)
+			= link_to Spree.t(:create_a_new_account), spree.signup_path
+			&nbsp|&nbsp
+			= link_to Spree.t(:forgot_password), spree.recover_password_path
+
+		%div{data:{hook:"login_extras"}}

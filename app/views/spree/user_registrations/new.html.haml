@@ -1,0 +1,29 @@
+- @body_id = 'signup'
+
+- content_for :breadcrumb_title do
+	= Spree.t :new_customer
+
+= render :partial => 'spree/shared/error_messages',
+	:locals => { :target => @user }
+
+.col-md-8.col-md-offset-2
+	#new-customer.panel-body{data:{hook:"login"}}
+
+		= form_for resource,
+			:as => :spree_user,
+			:url => spree.registration_path,
+			:html => {:class => 'form row'} do |f|
+
+			%div{data:{hook:"signup_inside_form"}}
+
+				= render :partial => 'spree/shared/user_form',
+					:locals => { :f => f }
+
+				.form-group.col-xs-12
+					%button.theme-btn-1.larg-btn.btn.submit-btn.btn-block{type:"submit"}
+						%b= Spree.t(:create)
+
+		.text-center
+			= Spree.t(:or)
+			= link_to Spree.t(:login_as_existing), spree.login_path
+		%div{data:{hook:"login_extras"}}

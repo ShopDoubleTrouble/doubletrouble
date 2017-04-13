@@ -1,0 +1,27 @@
+%li.cart-list
+
+	-# Cart Item Image
+	.cart-img
+		- if item.variant.images.length == 0
+			= link_to small_image(item.variant.product),
+				item.variant.product,
+				class:'img-responsive'
+		- else
+			= link_to image_tag(item.variant.images.first.attachment.url(:small)),
+				item.variant.product,
+				class:'img-responsive'
+
+	-# Cart Item Description
+	.cart-title
+		= link_to "#", :class => 'font-2 size-12' do
+			= item.variant.product.name
+
+			-# Show Quantity if there's more than 1 item
+			- if item.quantity > 1
+				= "(#{Spree.t(:qty)}: #{item.quantity.to_s})"
+
+		%p.caption-text.font-3
+			%span.size-14.black-color
+				= item.display_amount.to_html
+	-# DISABLED
+		.icon.ion-android-close.size-20.del-item

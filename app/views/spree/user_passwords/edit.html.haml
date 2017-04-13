@@ -1,0 +1,29 @@
+- content_for :breadcrumb_title do
+	= Spree.t :change_your_password
+
+
+= render :partial => 'spree/shared/error_messages',
+	:locals => { :target => @spree_user }
+
+.col-md-6.col-md-offset-3
+	= form_for @spree_user,
+		:as => :spree_user,
+		:url => spree.update_password_path,
+		:method => :put,
+		:html => {class:'form row'} do |f|
+
+		.form-group.col-xs-12
+			= f.password_field :password,
+				:class => "form-control",
+				:placeholder => Spree.t(:password)
+
+		.form-group.col-xs-12
+			= f.password_field :password_confirmation,
+				:class => "form-control",
+				:placeholder =>  Spree.t(:confirm_password)
+
+		= f.hidden_field :reset_password_token
+
+		.form-control.col-xs-12
+			%button.theme-btn-1.larg-btn.btn.submit-btn.btn-block{type:"submit"}
+				%b= Spree.t(:update)

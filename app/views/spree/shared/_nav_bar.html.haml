@@ -1,0 +1,54 @@
+%header.main-header.hidden-print
+	%section.header-wrap.upper-text
+		.top-bar
+
+			.col-md-2.col-sm-3
+				.logo.navbar-brand
+
+					-# Logo on most screens (save xs)
+					%h2.logo-title.font-2
+						= link_to :root do
+							= image_tag "dt_long.svg",
+								class:'navbar-logo'
+
+					-# Logo on xs screens
+					%span.nav-trigger.toggle-hover.visible-xs
+						= link_to '', :root,
+							:class => "toggle-icon icon-cube size-24"
+
+			.col-md-8.col-sm-12.navigation.font-2.text-left
+				%nav
+					.navbar-collapse.no-padding#primary-navigation
+						%ul.nav.navbar-nav.primary-navbar{"data-hook":true}
+
+							%li
+								= link_to :login, class:"color-primary" do
+									20% en tu primera compra
+
+							-# "products" menu item
+							%li= link_to Spree.t(:products), products_url
+
+							-# Menu items for the taxonomies
+							- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+								= nav_bar_taxon taxon.root, 5
+
+							%li= link_to Spree.t(:about), page_path('about')
+
+			.col-md-2.col-sm-6.top-right.text-right
+				%ul.top-elements
+
+					-# Search icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/searchhover'
+
+					-# Shopping cart icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/carthover'
+
+					-# Social Links
+					- social_links.each do |sl|
+						%li
+							= link_to sl[:url], class:"size-24", target:"_blank" do
+								- icon_class = "ion-social-" + sl[:name].downcase
+								%i{:class => icon_class }
+
+					-# Toggle icon and hover dialog
+					= render partial:'spree/shared/nav_bar_partials/togglehover'

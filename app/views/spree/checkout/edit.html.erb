@@ -1,0 +1,79 @@
+<% content_for :google_analytics do %>
+  <%= render partial: 'spree/shared/google_checkout.js',
+    locals: {
+      order: @order,
+      step_number: (@order.checkout_steps.index(@order.state) + 1)
+    }
+    %>
+<% end %>
+
+<% content_for :breadcrumb_title do %>
+  <%= Spree.t(:checkout) %>
+<% end %>
+
+<div id="checkout" class="row" data-hook="checkout_header">
+
+    <%= render partial: 'spree/shared/error_messages',
+      locals: { target: @order }
+      %>
+
+    <div class="col-sm-12 space-bottom-15" data-hook="checkout_progress">
+      <h1 class="section-title">
+        <%= Spree.t :checkout_steps %>
+      </h1>
+      <%= checkout_progress %>
+    </div>
+
+    <div class="<%=
+        if @order.state != 'confirm' then 'col-md-8' else 'col-md-12' end
+      %>"
+      >
+        <%= form_for @order,
+          url: update_checkout_path(@order.state),
+          html: {
+            id: "checkout_form_#{@order.state}"
+          } do |form|
+          %>
+
+          <% if @order.state == 'address' || !@order.email? %>
+
+              <div class="row space-20">
+                <div class="col-xs-12">
+
+                  <div class="heading chk">
+                    <h2 class="section-title">
+                      <%= Spree.t :your_email_address %>
+                    </h2>
+                  </div>
+
+                  <div class="form-group space-20">
+                    <%= form.text_field :email, class: 'form-control' %>
+                  </div>
+
+                </div>
+              </div>
+
+          <% end %>
+
+          <%= form.hidden_field :state_lock_version %>
+          <%= render @order.state, form: form %>
+        <% end %>
+    </div>
+
+    <% if @order.state != 'confirm' %>
+      <div id="checkout-summary" data-hook="checkout_summary_box" class="col-md-4 space-20">
+        <%= render partial: 'spree/shared/order_summary',
+          locals: { order: @order }
+          %>
+      </div>
+    <% end %>
+
+    <script>
+      Spree.current_order_id = "<%= @order.number %>"
+      Spree.current_order_token = "<%= @order.guest_token %>"
+    </script>
+</div>
+
+<% if I18n.locale != :en %>
+  <%= javascript_include_tag 'jquery.validate/localization/messages_' + I18n.locale.to_s.downcase.gsub('-', '') %>
+<% end %>

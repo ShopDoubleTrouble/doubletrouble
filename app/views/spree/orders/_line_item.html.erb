@@ -1,0 +1,65 @@
+<% variant = line_item.variant %>
+
+<%= order_form.fields_for :line_items, line_item do |item_form| %>
+  <tr class="line-item">
+
+    <%# Image %>
+    <td class="image" data-hook="cart_item_image">
+        <div class="white-bg">
+        <% if variant.images.length == 0 %>
+          <%= link_to small_image(variant.product), variant.product %>
+        <% else %>
+          <%= link_to image_tag(variant.images.first.attachment.url(:small)), variant.product %>
+        <% end %>
+      </div>
+    </td>
+
+    <%# Description %>
+    <td class="description" data-hook="cart_item_description">
+      <%= link_to line_item.name,
+        product_path(variant.product),
+        class:'size-16 black-color'
+        %>
+      <p class="line-item-description" data-hook="line_item_description">
+        <%= line_item_description_text(line_item.description) %>
+      </p>
+      <% unless variant.options_text.empty? %>
+        <ul>
+          <li>
+            <i class="arrow_carrot-right black-color size-18"></i>
+            <span><%= variant.options_text %></span>
+          </li>
+        </ul>
+      <% end %>
+      <% if line_item.insufficient_stock? %>
+        <span class="out-of-stock">
+          <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br />
+        </span>
+      <% end %>
+    </td>
+
+    <%# Price %>
+    <td class="price size-16 cart-item-price" data-hook="cart_item_price">
+      <%= line_item.single_money.to_html %>
+    </td>
+
+    <%# Quantity %>
+    <td class="cart-item-quantity" data-hook="cart_item_quantity" valign="center">
+      <%= item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5 %>
+    </td>
+
+    <%# Total %>
+    <td class="price size-16 cart-item-total" data-hook="cart_item_total">
+      <%= line_item.display_amount.to_html unless line_item.quantity.nil? %>
+    </td>
+
+    <%# Delete Button %>
+    <td class="cart-item-delete" data-hook="cart_item_delete">
+      <%= link_to content_tag(:span, '', class: 'icon_close size-24'), '#',
+        class: 'delete',
+        id: "delete_#{dom_id(line_item)}"
+        %>
+    </td>
+
+  </tr>
+<% end %>

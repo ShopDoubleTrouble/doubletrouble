@@ -1,0 +1,30 @@
+%span#cart_adjustments(data-hook)
+
+  //- Promotions
+  - if order.line_item_adjustments.nonzero.exists?
+    - order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
+      %tr.adjustment.title-1.size-14
+        %td= label
+        %td= Spree::Money.new(adjustments.sum(&:amount),
+            :currency => @order.currency)
+
+  //- Taxes
+  %div(data-hook="order_details_tax_adjustments")
+    - order.all_adjustments.nonzero.tax.eligible.group_by(&:label).each do |label, adjustments|
+      %tr.adjustment.title-1.size-14
+        %td= label
+        %td= Spree::Money.new(adjustments.sum(&:amount),
+            :currency => @order.currency)
+  //- Shipments
+  - order.shipments.each do |shipment|
+    %tr.adjustment.title-1.size-14
+      %td #{Spree.t(:shipping)} (#{shipment.shipping_method.name})
+      %td= shipment.display_discounted_cost
+
+  //- Manual Adjustments
+  %div#summary-order-charges(data-hook)
+    - order.adjustments.nonzero.eligible.group_by(&:label).each do |label, adjustments|
+      %tr.adjustment.title-1.size-14
+        %td= Spree.t :promotion_label
+        %td= Spree::Money.new(adjustments.sum(&:amount),
+            :currency => @order.currency)

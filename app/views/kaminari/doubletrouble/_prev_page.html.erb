@@ -1,0 +1,7 @@
+<li class="prev">
+  <% unless current_page.first? %>
+    <%= link_to url, :rel=> 'prev', :remote => remote do %>
+      <i class="arrow_carrot-left"></i>
+    <% end %>
+  <% end %>
+</li>

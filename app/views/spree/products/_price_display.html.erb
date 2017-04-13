@@ -1,0 +1,50 @@
+<% if product.price_in(current_currency) && !product.price.nil? %>
+  <ul class="stock-detail list-items black-color">
+
+    <%# Display the product Price %>
+    <li>
+      <div class="product-price font-3" data-hook="product_price">
+            <span class="size-30 black-color" itemprop="price">
+              <%= display_price(product) %>
+            </span>
+            <span itemprop="priceCurrency"
+              content="<%= product.currency %>"></span>
+      </div>
+    </li>
+
+    <%# "Only X available!" announcement will be shown if stock is between 20 and 0 %>
+    <% product_total = product.total_on_hand %>
+    <% if product_total < 20 && product_total > 0%>
+      <li class="">
+        <i class="icon-layers icons"></i>
+        <span>
+          <%= Spree.t(:only_x_available, :amount=>product_total) %>
+        </span>
+        <i class="arrow_carrot-down"></i>
+      </li>
+    <% end %>
+
+    <%# "In Stock"/ "Out of Strock" label %>
+    <li>
+      <% if product.can_supply? %>
+        <span class="green-color">
+          <%= Spree.t(:in_stock) %>
+        </span>
+        <link itemprop="availability" href="https://schema.org/InStock" />
+      <% else %>
+        <span class="red-color">
+          <%= Spree.t(:out_of_stock) %>
+        </span>
+      <% end %>
+    </li>
+
+  </ul>
+
+<% else %>
+
+  <%# Product cannot be sold with this currency %>
+  <span class="gray-color size-24">
+    <%= Spree.t(:product_not_available_in_this_currency) %>
+  </span>
+
+<% end %>

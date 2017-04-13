@@ -1,0 +1,17 @@
+-# Defined in products_helper.rb
+- image_array = images_for_product(@product)
+
+.owl-carousel.prod-slider.sync1
+
+	- image_array.each do |image|
+		.item
+			= image_tag image.attachment.url(:product)
+			= link_to image.attachment.url(:large),
+				data:{gal:'prettyPhoto[prettyPhoto]'},
+				title:"Product",
+				class:"caption-link" do
+				%i.arrow_expand
+
+.owl-carousel.sync2
+	- image_array.each do |image|
+		.item= image_tag(image.attachment.url(:mini))

@@ -1,0 +1,23 @@
+- content_for :breadcrumb_title do
+	= Spree.t :forgot_password
+
+= render :partial => 'spree/shared/error_messages',
+	:locals => { :target => @spree_user }
+
+#forgot-password.col-md-6.col-md-offset-3
+	%p
+		= Spree.t(:instructions_to_reset_password)
+
+	= form_for Spree::User.new,
+		:as => :spree_user,
+		:url => spree.reset_password_path,
+		:html => {class:'form'} do |f|
+
+		.form-group
+			= f.email_field :email,
+				:placeholder => Spree.t(:email) ,
+				:class => "form-control"
+
+		.form-group
+			%button.theme-btn-1.larg-btn.btn.submit-btn.btn-block{type:"submit"}
+				%b= Spree.t(:reset_password)

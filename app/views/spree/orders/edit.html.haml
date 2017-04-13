@@ -1,0 +1,17 @@
+- @body_id = 'home'
+
+- content_for :breadcrumb_title do
+	= Spree.t :shopping_cart
+
+.row
+	%div{data:{hook:"cart_container"}}
+
+		- if @order.line_items.empty?
+			%div{data:{hook:"empty_cart"}}
+				.alert.alert-info= Spree.t(:your_cart_is_empty)
+				%p= link_to Spree.t(:continue_shopping),
+						products_path,
+						class: 'theme-btn btn'
+
+		- else
+			= render partial:'shopping_cart', locals:{order:@order}

@@ -1,0 +1,34 @@
+!!!
+/[if IE 7] <html class="no-js ie7 oldie" lang="es">
+/[if IE 8] <html class="no-js ie8 oldie" lang="es">
+/[if gt IE 9]><!
+%html{lang:I18n.locale}
+	/<![endif]
+
+	%head{'data-hook':"inside_head"}
+		= render partial: 'spree/shared/head'
+
+	%body{class:body_class, id:(@body_id || 'home'), data:{hook:"body"}}
+
+		-# Google Analytics partial
+		= render partial: 'spree/shared/google_analytics.js'
+
+		%main.wrapper
+
+			= render partial:'spree/shared/nav_bar'
+			= render partial:'spree/shared/breadcrumb'
+			
+			%section.wrapper.space-60{class:@extra_wrapper_classes}
+				.theme-container.container
+					= flash_messages
+					= yield
+
+			= render partial: 'spree/shared/footer'
+
+			-# To Top button
+			#to-top.to-top
+				%i.arrow_carrot-up
+
+			= yield :templates
+
+		= javascript_include_tag 'application-body', integrity: true

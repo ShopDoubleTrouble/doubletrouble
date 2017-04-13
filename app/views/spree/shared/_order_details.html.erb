@@ -1,0 +1,154 @@
+<!-- Shopping Cart Starts -->
+<div class="row steps-data">
+  <% if order.has_step?("address") %>
+    <div class="col-md-3 col-sm-3 col-xs-6" data-hook="order-bill-address">
+      <h2 class="section-title">
+        <%= Spree.t(:billing_address) %>
+      </h2>
+      <%= render 'spree/shared/address', address: order.bill_address %>
+      <% unless order.completed? %>
+        <br />
+        <%= link_to checkout_state_path(:address), :class => 'btn theme-btn' do  %>
+          <i class="fa fa-edit"></i>&nbsp;
+          <%= Spree.t(:edit) %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if order.has_step?("delivery") %>
+      <div class="col-md-3 col-sm-3 col-xs-6" data-hook="order-ship-address">
+        <h2 class="section-title">
+          <%= Spree.t(:shipping_address) %>
+        </h2>
+        <%= render 'spree/shared/address', address: order.ship_address %>
+        <% unless order.completed? %>
+          <br />
+          <%= link_to checkout_state_path(:address), :class => 'btn theme-btn' do  %>
+            <i class="fa fa-edit"></i>&nbsp;
+            <%= Spree.t(:edit) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-6" data-hook="order-shipment">
+        <h2 class="section-title">
+          <%= Spree.t(:shipments) %>
+        </h2>
+        <div class="delivery">
+          <% order.shipments.each do |shipment| %>
+            <div>
+              <i class='fa fa-truck'></i>
+              <%= Spree.t(:shipment_details, stock_location: shipment.stock_location.name, shipping_method: shipment.selected_shipping_rate.name) %>
+            </div>
+          <% end %>
+        </div>
+        <%= render 'spree/shared/shipment_tracking', order: order if order.shipped? %>
+        <% unless order.completed? %>
+          <br />
+          <%= link_to checkout_state_path(:delivery), :class => 'btn theme-btn' do  %>
+            <i class="fa fa-edit"></i>&nbsp;
+            <%= Spree.t(:edit) %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if order.has_step?("payment") %>
+    <div class="col-md-3 col-sm-3 col-xs-6" data-hook="order-payment">
+      <h2 class="section-title">
+        <%= Spree.t(:payment) %>
+      </h2>
+      <div class="payment-info">
+        <% order.payments.valid.each do |payment| %>
+          <%= render payment %><br/>
+        <% end %>
+      </div>
+      <% unless order.completed? %>
+        <br />
+        <%= link_to checkout_state_path(:payment), :class => 'btn theme-btn' do  %>
+          <i class="fa fa-edit"></i>&nbsp;
+          <%= Spree.t(:edit) %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="cart-table space-20">
+  <table class="product-table black-color" id='line-items' data-hook="order_details">
+    <thead class="font-2" data-hook>
+        <tr data-hook="order_details_line_items_headers">
+          <th>&nbsp;</th>
+          <th><%= Spree.t(:item)  %></th>
+          <th><%= Spree.t(:price) %></th>
+          <th><%= Spree.t(:qty)   %></th>
+          <th><%= Spree.t(:total) %></th>
+        </tr>
+    </thead>
+
+    <tbody data-hook>
+      <% order.line_items.each do |item| %>
+        <tr data-hook="order_details_line_item_row">
+
+          <td data-hook="order_item_image" class="image">
+            <div class="white-bg">
+              <% if item.variant.images.length == 0 %>
+                <%= link_to small_image(item.variant.product),
+                  item.variant.product
+                  %>
+              <% else %>
+                <%= link_to image_tag(item.variant.images.first.attachment.url(:small)),
+                  item.variant.product
+                  %>
+              <% end %>
+            </div>
+          </td>
+
+          <td class="description" data-hook="order_item_description">
+            <%# I don't know how to get the product's url. This only uses a placeholder %>
+            <% product_url = "#" %>
+            <%= link_to item.variant.product.name,
+              product_url,
+              :class => "size-16 black-color"
+              %>
+            <%= truncated_product_description(item.variant.product) %>
+            <% unless item.variant.option_values.empty? %>
+              <ul>
+                <li>
+                  <i class="arrow_carrot-right black-color size-18"></i>
+                  <span><%= item.variant.options_text %></span>
+                </li>
+              </ul>
+            <% end %>
+          </td>
+
+          <td class="price size-16" data-hook="order_item_price">
+            <%= item.single_money.to_html %>
+          </td>
+
+          <td class="quantity" data-hook="order_item_qty">
+              <div class="qty">
+                  <%= item.quantity %>
+              </div>
+          </td>
+
+          <td class="price size-16" data-hook="order_item_total">
+            <%= item.display_amount.to_html %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+<div class="row">
+
+  <div class="col-md-4 col-md-offset-8 col-sm-8 col-sm-offset-4 col-xs-12 space-20">
+      <%= render partial: 'spree/shared/order_summary',
+        locals: { order: @order }
+        %>
+  </div>
+</div>

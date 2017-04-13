@@ -1,0 +1,28 @@
+- @body_id = 'home'
+
+- content_for :breadcrumb_title do
+	= @taxon.name
+
+.row
+
+	-# Sidebar
+	-# SIDEBAR DISABLED
+		%aside.sidebar.with-border.col-sm-4.col-md-3.space-15
+			%div{data:{hook:"taxon_sidebar_navigation"}}
+				= render :partial => 'spree/shared/taxonomies'
+				= render :partial => 'spree/shared/filters'
+
+	%aside.col-xs-12.prod-categories.cat-with-sidebar
+		-if @taxon.description
+			%p= @taxon.description
+			.space-20
+
+		#grid-view.tab-pane.fade.active.in{role:"tabpanel"}
+			%div{data:{hook:"taxon_products"}}
+				= render partial: 'spree/shared/products',
+					locals: { products: @products, taxon: @taxon }
+
+		- unless params[:keywords].present?
+			%div{data:{hook:"taxon_children"}}
+				- cache [I18n.locale, @taxon] do
+					= render @taxon.children, cached:true

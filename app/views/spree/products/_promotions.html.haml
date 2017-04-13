@@ -1,0 +1,14 @@
+- promotions = @product.possible_promotions
+
+- if promotions.any?
+	%hr.fullwidth-divider
+	#promotions
+		%h3= Spree.t :promotions
+		- promotions.each do |promotion|
+			.alert.alert-info
+				%h4= promotion.name
+				%p= promotion.description
+				- if promotion.products.any?
+					%ul
+						- promotion.products.each do |product|
+							%li= link_to product.name, product_path(product)

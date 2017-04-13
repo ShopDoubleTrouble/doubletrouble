@@ -1,0 +1,42 @@
+%li.cart-hover#link-to-cart{"data-hook":true}
+
+	-# Cart Icon itself
+	= link_to :cart, class: 'cart-icon size-24' do
+		- unless simple_current_order.nil? or simple_current_order.item_count.zero?
+			%span.items-count.font-2
+				%b= simple_current_order.item_count
+
+	%ul.pop-up-box.cart-popup
+
+		-# EMPTY CART
+		- unless simple_current_order.line_items.count > 0
+			%li.cart-list.font-1.space-20
+				%div
+					%b.black-color
+						= Spree.t :your_cart_is_empty
+
+		- else
+			-# Cart Items
+			= render partial:"spree/shared/nav_bar_partials/carthover_lineitem",
+				collection: simple_current_order.line_items,
+				as: :item,
+				cached: true
+
+			-# Subtotal Line
+			- if simple_current_order.total > 0
+				%li.cart-list.font-3.sub-total
+					%div
+						%b.black-color
+							= Spree.t(:subtotal)
+					.pull-right
+						%span.theme-color.size-18
+							= simple_current_order.display_item_total.to_html
+
+		-# Link Buttons
+		%li.cart-list.buttons
+			%div
+				= link_to Spree.t(:cart), :cart,
+					class: 'theme-btn-1 btn small-btn'
+			.pull-right
+				= link_to Spree.t(:checkout), :checkout,
+					class: 'theme-btn btn small-btn'

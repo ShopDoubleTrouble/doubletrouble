@@ -1,0 +1,5 @@
+- if @product.taxons.present?
+	%h3.product-section-title= Spree.t(:look_for_similar_items)
+	%ul.list-group#similar_items_by_taxon{data:{hook:true}}
+		- @product.taxons.each do |taxon|
+			%li.list-group-item= link_to taxon.name, seo_url(taxon)

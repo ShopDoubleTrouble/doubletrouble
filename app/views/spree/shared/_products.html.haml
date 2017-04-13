@@ -1,0 +1,33 @@
+- content_for :head do
+	- if products.respond_to?(:num_pages)
+		= rel_next_prev_link_tags products
+
+- if !(defined?(summary)) || summary
+	-# Header text
+	.row.space-bottom-50
+		.col-md-6.col-sm-5.col-xs-3.show-result
+			%h2.section-title.size-18
+				- if products.empty?
+					%span{data:{hook:"products_search_results_heading_no_results_found"}}
+						= Spree.t :no_products_found
+				- elsif params.key?(:keywords)
+					%span{data:{hook:"products_search_results_heading_results_found"}}
+						= Spree.t(:search_results, keywords: h(params[:keywords]))
+				- else
+					%span
+						= Spree.t :n_products_found, amount:products.count
+
+
+- if products.any?
+	.row.text-center
+		-# Slides
+		= render collection:products,
+			partial:'spree/products/product',
+			layout:'spree/layouts/bootstrap_grid_third',
+			cached:true
+
+.clearfix
+
+-# Pagination using KAMINARI gem
+- if products.respond_to?(:total_pages)
+	= paginate products, theme:'doubletrouble'

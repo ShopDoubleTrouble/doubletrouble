@@ -1,0 +1,39 @@
+<%= form_for Spree::User.new,
+  :as => :spree_user,
+  :url => spree.create_new_session_path,
+  :html => {:class => "form"} do |f| %>
+
+  <div id="password-credentials">
+    <div class="form-group">
+      <%= f.email_field :email,
+        :class => 'form-control',
+        :tabindex => 1,
+        :placeholder => Spree.t(:email),
+        autofocus: true
+        %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password,
+        :class => 'form-control',
+        :tabindex => 2,
+        :placeholder => Spree.t(:password)
+        %>
+    </div>
+  </div>
+  <div class="form-group">
+      <label class="checkbox-inline size-13">
+        <%= f.label :remember_me  do %>
+          <%= f.check_box :remember_me, :tabindex => 3 %>
+          <span><%= Spree.t(:remember_me) %></span>
+        <% end %>
+      </label>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit Spree.t(:login),
+      :class => 'btn theme-btn btn-block',
+      :tabindex => 4
+      %>
+  </div>
+
+<% end %>

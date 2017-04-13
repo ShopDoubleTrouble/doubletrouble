@@ -1,0 +1,11 @@
+.taxon.row{data:{hook:"taxon"}}
+	.col-xs-12.space-bottom-50
+		%h1.section-title.size-18
+			= link_to taxon.name, seo_url(taxon)
+
+		- if taxon.description
+			%p= taxon.description
+
+	#grid-view.tab-pane.fade.active.in{role:"tabpanel"}
+		= render partial: 'spree/shared/products',
+			locals: { products: taxon_preview(taxon), taxon: taxon, summary:true }

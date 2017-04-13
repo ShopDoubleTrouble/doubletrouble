@@ -1,0 +1,36 @@
+%meta{charset:"utf-8"}
+/[if IE]
+  %meta{'http-equiv':"X-UA-Compatible", content:"IE=edge"}
+%title= title
+%meta{content:"text/html; charset=UTF-8", 'http-equiv':"Content-Type"}
+%meta{content:"width=device-width, initial-scale=1.0, maximum-scale=1", name:"viewport"}
+!= meta_data_tags
+= canonical_tag(current_store.url)
+
+-#
+  = favicon_link_tag 'favicons/favicon.ico'
+  = favicon_link_tag 'favicons/favicon16.png', type:'image/png', sizes:'16x16'
+  = favicon_link_tag 'favicons/favicon192.png', type:'image/png', sizes:'192x192'
+  = favicon_link_tag 'favicons/favicon196.png', type:'image/png', sizes:'196x196'
+  = favicon_link_tag 'favicons/favicon420.png', type:'image/png', sizes:'420x420'
+  = favicon_link_tag 'favicons/favicon32.png', type:'image/png', sizes:'32x32'
+
+= render 'application/favicon'
+
+= stylesheet_link_tag 'application', media: 'all'
+= csrf_meta_tags
+= javascript_include_tag 'application-head'
+/[if lt IE 9]
+  = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js",
+    "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"
+
+-# Google Fonts.
+= stylesheet_link_tag '//fonts.googleapis.com/css?family'   + |
+  '=Open+Sans:300,400,700,400italic'                        + |
+  '|Montserrat:400,700'                                     + |
+  '|Oswald:400,300,700'                                     |
+
+-# External
+= javascript_include_tag "//maps.googleapis.com/maps/api/js?v=3"
+
+= yield :head

@@ -1,0 +1,34 @@
+<%
+  # Data displayed on the slider is different if we have a taxonomy defined or not
+  data = {}
+  if defined? taxon
+    data[:title] = link_to taxon.name, seo_url(taxon)
+    data[:products_array] = taxon.products
+    data[:taxon] = taxon
+  else
+    data[:title] = Spree.t :featured_products
+    data[:products_array] = @products
+    data[:taxon] = nil
+  end
+%>
+
+<%
+  # Print nothing if the collection is empty
+  unless data[:products_array].empty? %>
+
+  <!-- Products Starts-->
+  <div id="product" class="space-50 text-center">
+    <h2 class="section-title space-bottom-40">
+      <%= data[:title] %>
+    </h2>
+    <div class="relative-div row">
+      <div class="related-prod-slider space-bottom-30">
+        <%= render data[:products_array].sample(6),
+          cached:true
+          %>
+      </div>
+    </div>
+  </div>
+  <!-- / Products Ends -->
+
+<% end %>

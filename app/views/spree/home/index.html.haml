@@ -1,0 +1,13 @@
+- body_class = "wide"
+- @body_id = "home"
+
+- content_for :breadcrumb_large_content do
+	#main-logo= image_tag "dt.svg"
+
+-# Very similar to products/Index page
+.row.space-100
+	%aside.col-xs-12.prod-categories.cat-with-sidebar
+		#grid-view.tab-pane.fade.active.in
+			- cache(cache_key_for_products) do
+				= render partial: 'spree/shared/products',
+					locals: { products: @products, summary:false }

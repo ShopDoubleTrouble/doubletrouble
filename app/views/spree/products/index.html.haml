@@ -1,0 +1,30 @@
+- @body_id = 'home'
+
+- content_for :breadcrumb_title, Spree.t(:index_title)
+
+.row
+	-# Product Categories Sidebar Starts
+	-# SIDEBAR DISABLED
+		%aside.sidebar.with-border.col-sm-4.col-md-3.space-15
+
+			- if "spree/products" == params[:controller] && @taxon || !@taxonomies.empty?
+				%div{data:{hook:"homepage_sidebar_navigation"}}
+					- if "spree/products" == params[:controller] && @taxon
+						= render :partial => 'spree/shared/filters'
+					- else
+						= render :partial => 'spree/shared/taxonomies'
+
+	%aside.col-xs-12.prod-categories.cat-with-sidebar
+		#grid-view.tab-pane.fade.active.in{role:"tabpanel",
+			data:{hook:(params[:keywords] ? "search_results" : false) }}
+
+			- if params[:keywords]
+				= render :partial => 'spree/shared/products',
+					:locals => { :products => @products, :taxon => @taxon }
+
+			- else
+				- cache(cache_key_for_products) do
+					= render :partial => 'spree/shared/products',
+						:locals => { :products => @products, :taxon => @taxon}
+
+		.visible-lg.space-top-40

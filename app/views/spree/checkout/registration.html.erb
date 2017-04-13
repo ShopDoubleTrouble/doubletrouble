@@ -1,0 +1,73 @@
+<% @body_id = 'home' %>
+
+<% content_for :breadcrumb_title do %>
+  <%= Spree.t :registration %>
+<% end %>
+
+<section class="login-reg-wrap space-100" id="registration" data-hook>
+  <div class="theme-container container">
+
+    <div class="row">
+
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+        <%= render :partial => 'spree/shared/error_messages',
+          :locals => { :target => @user }
+          %>
+      </div>
+
+      <div id="account">
+        <%= render :partial => 'new_user' %>
+      </div>
+
+      <% if Spree::Config[:allow_guest_checkout] %>
+        <div class="col-md-6">
+          <div class="register-wrap">
+
+            <%# Title %>
+            <h2 class="section-title no-margin size-18">
+              <%= Spree.t(:guest_user_account) %>
+            </h2>
+            <p class="space-30 gray-color">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+
+            <div id="guest_checkout" data-hook>
+              <% if flash[:registration_error] %>
+                <div class='flash error'><%= flash[:registration_error] %></div>
+              <% end %>
+              <%= form_for @order,
+                :url => update_checkout_registration_path,
+                :method => :put,
+                :html => {
+                  :id => 'checkout_form_registration',
+                  :class => 'register-form row space-top-15'
+                } do |f|
+                %>
+
+                <div class="form-group col-md-12">
+                  <%= f.email_field :email,
+                    :class => 'form-control email input-email',
+                    :placeholder => Spree.t(:email),
+                    :data => {
+                      :'original-title' => "Email is required",
+                      :toggle => "tooltip",
+                      :placement => "bottom"
+                    }
+                    %>
+                </div>
+
+
+                <div class="form-group col-md-12">
+                  <%= f.button Spree.t(:continue),
+                    :type => 'submit',
+                    :class => 'theme-btn-1 larg-btn btn submit-btn btn-block'
+                    %>
+                </div>
+
+              <% end %>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</section>

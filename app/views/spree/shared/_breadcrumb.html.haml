@@ -1,0 +1,26 @@
+-# Breadcrumb Section Start
+%section.breadcrumb-bg.light-bg.hidden-print
+	.space-top-30
+	- if content_for :breadcrumb_large_content
+
+		-# Breadcrumb for images, like the index page
+		.container= yield :breadcrumb_large_content
+	-else
+
+		-# Breadcrumb for text
+		.theme-container.container
+			.site-breadcumb.col-md-6.space-80
+				%h1.section-title.size-48.no-margin.space-bottom-20
+					- if content_for :breadcrumb_title
+						= yield :breadcrumb_title
+				= dt_breadcrumbs @taxon
+
+-# Breadcrumb Section End
+
+-# Header for printed documents
+%section.visible-print-block
+	.theme-container.container
+		.space-top-30
+		%h1.section-title.size-24.no-margin
+			- if content_for :breadcrumb_title
+				= yield :breadcrumb_title

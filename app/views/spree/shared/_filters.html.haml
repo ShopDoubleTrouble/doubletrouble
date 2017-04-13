@@ -1,0 +1,26 @@
+- filters = @taxon ? @taxon.applicable_filters : [Spree::Core::ProductFilters.all_taxons]
+
+- unless filters.empty?
+	= form_tag '', :method => :get, :id => 'sidebar_products_search' do
+		= hidden_field_tag 'per_page', params[:per_page]
+		- filters.each do |filter|
+			- labels = filter[:labels] || filter[:conds].map {|m,c| [m,m]}
+			- next if labels.empty?
+
+			.navigation.widget-wrap.space-bottom-40{data:{hook:"navigation"}}
+				%h2.widget-title= filter[:name]
+				.widget-content
+					%ul.list-group
+						- labels.each do |nm,val|
+							- label = "#{filter[:name]}_#{nm}".gsub(/\s+/,'_')
+							%li
+								- is_checked =  params[:search].present? && params[:search][filter[:scope]] && params[:search][filter[:scope]].include?(val.to_s)
+								- name = "search[#{filter[:scope].to_s }][]"
+								.form-group{style:'margin-bottom:0px;'}
+									%label.checkbox-inline.size-13
+										%label{for:label}
+											%input{type:"checkbox",id:label, value:val, checked:is_checked,
+													name:name}
+											%span= nm
+
+					= submit_tag Spree.t(:search), :name => nil, :class => 'btn btn-primary theme-btn btn-block'

@@ -1,0 +1,88 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+es:
+
+  errors:
+    connection_refused: Conexión Rechazada
+
+  # Hardcoded Override for Money Gem
+  number:
+    currency:
+      format:
+        delimiter: " "
+        separator: "."
+
+  spree:
+
+    #Default missing Translations
+    adjustment_labels:
+      tax_rates:
+        including_tax: '%{name}%{amount} (Incluído en el precio)'
+        excluding_tax: "%{name}%{amount}"
+    i18n:
+      available_locales: Localizaciones disponibles
+      fields: Campos
+      language: Lenguaje
+      localization_settings: Opciones de localización
+      only_incomplete: Sólo incompletos
+      only_complete: Sólo completos
+      select_locale: Seleccionar Localización
+      show_only: Sólo mostrar
+      supported_locales: Locales Soportadas
+      this_file_language: Español (Estándar)
+      translations: "Traducciones"
+    new_taxonomy: "Nueva Taxonomía"
+    new_promotion_category: Nueva Categoría de Promoción
+    order_number: Orden %{number}
+    promotion_label: Promoción
+    shipping_total: Total de Envío
+    selected_quantity_not_available: "No tenemos suficientes existencias para cumplir la orden."
+    use_app_default: Usar predefinido de la aplicación
+
+    #Overrides
+    account: Mi Cuenta
+    login: Login
+    # Maked the Admin Calendar's week start at Sunday
+    date_picker:
+      first_day: 0
+
+    # New Elements
+    about: Nosotros
+    about_us: Sobre Nosotros
+    age: Edad
+    all_rights_reserved: "Todos los derechos reservados"
+    birthdate: Fecha de Nacimiento
+    checkout_steps: "Pasos de Compra"
+    developed_by: "Desarrollado por"
+    featured_products: "Productos Destacados"
+    found_this_on_doubletrouble: "Encontré esto en Doubletrouble"
+    in_stock: "Disponible"
+    index_title: Catálogo de Productos
+    n_products_found: Mostrando los %{amount} productos
+    only_x_available: "Sólo %{amount} en existencia"
+    order_summary: "Resumen de orden"
+    product_details: Detalles del Producto
+    returns: "Devoluciones"
+    shop_now: "Comprar ya"
+    terms_of_service: Términos de Servicio
+    unknown: Desconocido
+    your_email_address: "Su dirección de correo"

@@ -1,0 +1,74 @@
+<!-- SLIDE  -->
+<li data-transition="fade" data-slotamount="7" data-masterspeed="1000" data-delay="6000"
+  data-thumb="<%= image_url 'fashion/slider/layer-img1.png' %>" data-title="NEW ARRIVAL"
+  >
+
+    <!-- MAIN IMAGE -->
+    <%= image_tag "fashion/slider/slidebg-1.jpg",
+      alt: "newslide2014_1",
+      data:{
+        bgposition:"center top",
+        bgfit:"cover",
+        bgrepeat:"no-repeat"
+      }
+      %>
+
+    <!-- LAYER NR. 2 -->
+    <div class="tp-caption lfl section-title size-48"
+         data-x="800" data-hoffset="-400"
+         data-y="260" data-voffset="-75"
+         data-speed="600"
+         data-start="900"
+         data-easing="Power4.easeInBack"
+         data-splitin="none"
+         data-splitout="none"
+         data-elementdelay="0.01"
+         data-endelementdelay="0.1"
+         data-endspeed="500"
+         data-endeasing="Power4.easeIn"
+         style="z-index: 3;"> <div class="lrg-txt"> The D.T. Club </div>
+    </div>
+
+
+    <!-- LAYER NR. 4 -->
+    <div class="tp-caption lfl slide-btn"
+         data-x="800" data-hoffset="-400"
+         data-y="410" data-voffset="-75"
+         data-speed="600"
+         data-start="1300"
+         data-easing="Power4.easeInBack"
+         data-splitin="none"
+         data-splitout="none"
+         data-elementdelay="0.01"
+         data-endelementdelay="0.1"
+         data-endspeed="500"
+         data-endeasing="Power4.easeIn"
+         style="z-index: 3;">
+         <form action="#dt-club-description" method="GET">
+          <button class="btn btn-black" type="submit">
+            <%= Spree.t :shop_now %>
+          </button>
+        </form>
+    </div>
+
+    <!-- LAYER NR. 5 -->
+    <div class="tp-caption lfr"
+         data-x="-100" data-hoffset="-800"
+         data-y="0" data-voffset="-75"
+         data-speed="800"
+         data-start="900"
+         data-easing="Power4.easeInBack"
+         data-splitin="none"
+         data-splitout="none"
+         data-elementdelay="0.01"
+         data-endelementdelay="0.1"
+         data-endspeed="500"
+         data-endeasing="Power4.easeIn"
+         style="z-index: 2;">
+
+          <%= image_tag "slider/doubletrouble1.jpg",
+            class: "img-responsive",
+            alt: ""
+           %>
+    </div>
+</li>

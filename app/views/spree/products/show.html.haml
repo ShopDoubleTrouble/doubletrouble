@@ -1,0 +1,64 @@
+- @body_id = 'product-details'
+- @extra_wrapper_classes = "prod-lay-1"
+
+- content_for :breadcrumb_title, Spree.t(:product_details)
+
+- cache cache_key_for_product do
+	.row{itemscope:true, itemtype:"https://schema.org/Product"}
+
+		-# Single Products Slider Starts
+		.col-md-4.col-sm-8.col-sm-offset-2.prod-slider-wrap{data:{hook:true}}
+			= render partial:'image'
+
+		.space-40.inline-block.visible-sm.visible-xs
+
+		-# Products Description Starts
+		.col-md-8
+
+			.product-content
+
+				-# Product Name
+				.product-heading
+					%h2.product-title{itemprop:"name"}= @product.name
+
+				-# Product pricing and availability
+				.product-availability
+					= render partial:'price_display',
+						locals:{product:@product}
+
+				%hr.fullwidth-divider
+
+				-# Description
+				.product-description.space-bottom-15.size-13{id:"product-description",
+					data:{hook:"product_description"},
+					itemprop:"description"}
+					%p= product_description(@product)
+
+					- if @product_properties.count > 0
+						%br/
+						%ul
+							- @product_properties.each do |property|
+								%li
+									%i.icon_stop
+									%span.des
+										= "#{property.property.presentation}: #{property.value}"
+
+				%hr.fullwidth-divider
+
+				-# "Add to cart" Form
+				#cart-form{data:{hook:"cart_form"}}= render partial:'cart_form'
+
+				.prod-code.upper-text.space-top-40
+					%p
+						%span.font-2.gray-color SKU :
+						%b.black-color= sku_array_for_product(@product).join ", "
+					.prod-social
+						%span.font-2.gray-color
+							Share :
+							= social_share @product
+
+				-# Promotions Widget. Not customized yet, but functional
+				%div{data:{hook:"promotions"}}
+					= render partial: 'promotions'
+
+	= render partial:'spree/shared/featured'
