@@ -1,19 +1,14 @@
-%li.toggle-hover
-	= link_to '', "#", class:"toggle-icon icon-cube size-24"
-	%ul.pop-up-box
-		%li.additional-page.font-2
+- if current_spree_user.nil?
+	-# Show Login if there's no user
+	= link_to :login do
+		= Spree.t :login
+- else
+	-# If there's a user, show logout
+	= link_to :logout do
+		= Spree.t :logout
 
-			- if current_spree_user.nil?
-				-# Show Login if there's no user
-				= link_to :login do
-					%span.icon.ion-ios-unlocked-outline
-					= Spree.t :login
-			- else
-				-# If there's a user, show logout
-				= link_to :logout do
-					%span.icon.ion-ios-locked-outline
-					= Spree.t :logout
+%span= "|"
 
-			= link_to :account do
-				%span.icon.ion-ios-person-outline
-				= Spree.t :account
+= link_to :account do
+	%ion-ios-person-outline
+	= Spree.t :account

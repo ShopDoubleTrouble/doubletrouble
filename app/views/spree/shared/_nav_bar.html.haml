@@ -2,7 +2,7 @@
 	%section.header-wrap.upper-text
 		.top-bar
 
-			.col-md-2.col-sm-3
+			.col-md-3.col-sm-3
 				.logo.navbar-brand
 
 					-# Logo on most screens (save xs)
@@ -25,6 +25,10 @@
 								- icon_class = "ion-social-" + sl[:name].downcase
 								%i{:class => icon_class }
 
+					- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+						- if taxon.name == "DT Club"
+							= nav_bar_taxon taxon.root, 5
+
 					-# Toggle icon and hover dialog
 					= render partial:'spree/shared/nav_bar_partials/togglehover'
 
@@ -34,22 +38,24 @@
 					-# Shopping cart icon and hover dialog
 					= render partial:'spree/shared/nav_bar_partials/carthover'
 
-			%hr.fullwidth-divider
+			%hr.fullwidth-divider.col-md-8.col-sm-12.top-elements-hr
 
 			.col-md-8.col-sm-12.navigation.font-2.text-left
 				%nav
 					.navbar-collapse.no-padding#primary-navigation
 						%ul.nav.navbar-nav.primary-navbar{"data-hook":true}
 
+							-# "products" menu item
+							-# %li= link_to Spree.t(:products), products_url
+
+							-# Menu items for the taxonomies
+							- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+								- if taxon.name != "DT Club" && taxon.name != "SALE 50% OFF" && taxon.name != "Accessories" && taxon.name != "Shoes"
+									= nav_bar_taxon taxon.root, 5
+
 							%li
 								= link_to :login, class:"color-primary" do
 									20% en tu primera compra
 
-							-# "products" menu item
-							%li= link_to Spree.t(:products), products_url
 
-							-# Menu items for the taxonomies
-							- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
-								= nav_bar_taxon taxon.root, 5
-
-							%li= link_to Spree.t(:about), page_path('about')
+							-# %li= link_to Spree.t(:about), page_path('about')

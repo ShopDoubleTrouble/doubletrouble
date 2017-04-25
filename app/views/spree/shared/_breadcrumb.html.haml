@@ -17,6 +17,26 @@
 
 -# Breadcrumb Section End
 
+-# navbar with shoes, accessories, 50% off, and about
+.navigation.font-2
+	%nav
+		.navbar-collapse.no-padding#primary-navigation
+			%ul.nav.navbar-nav.primary-navbar{"data-hook":true}
+
+				-# Menu items for the taxonomies
+				- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+					- if taxon.name == "Shoes" || taxon.name == "Accessories"
+						= nav_bar_taxon taxon.root, 5
+						%span= "|"
+
+				-# Make sure 50% off is second to last
+				- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+					- if taxon.name == "SALE 50% OFF"
+						= nav_bar_taxon taxon.root, 5
+						%span= "|"
+
+				%li= link_to Spree.t(:about), page_path('about')
+
 -# Header for printed documents
 %section.visible-print-block
 	.theme-container.container

@@ -340,9 +340,9 @@ jQuery(function (jQuery) {
          * ==============================
         */
 
-        if (jQuery(window).width() > 760 && (jQuery('.main-header').length > 0)) {
-            jQuery(".main-header").sticky({topSpacing: 0});
-        }
+        // if (jQuery(window).width() > 760 && (jQuery('.main-header').length > 0)) {
+        //     jQuery(".main-header").sticky({topSpacing: 0});
+        // }
 
 
         /**

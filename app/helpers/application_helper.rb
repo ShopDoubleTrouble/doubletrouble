@@ -111,6 +111,7 @@ module ApplicationHelper
   def social_links
     return [
       {name:"Facebook", url:"https://facebook.com/doubletroublepty/"},
+      {name:"Twitter", url:"https://twitter.com.com/doubletroublepty/"},
       {name:"Instagram", url:"https://instagram.com/doubletroublepty/"}
     ]
   end
