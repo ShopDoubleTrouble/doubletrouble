@@ -21,7 +21,20 @@
 - if products.any?
 	.row.text-center
 		-# Slides
-		= render collection:products,
+		= render products.first(4),
+			partial:'spree/products/product',
+			layout:'spree/layouts/bootstrap_grid_third',
+			cached:true
+
+	.row.text-center
+		-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
+		= render Spree::Product.in_taxons(sale_taxon_number).first(4),
+			partial:'spree/products/promotions',
+			layout:'spree/layouts/bootstrap_grid_third',
+			cached:true
+
+	.row.text-center
+		= render products.reverse_order.first(4),
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true

@@ -36,5 +36,5 @@
 	%aside.col-xs-12.prod-categories.cat-with-sidebar
 		#grid-view.tab-pane.fade.active.in
 			- cache(cache_key_for_products) do
-				= render partial: 'spree/shared/products',
-					locals: { products: @products, summary:false }
+				= render partial: 'spree/shared/products_mini',
+					locals: { products: @products, summary:false, taxon: @taxon }
