@@ -20,7 +20,7 @@
 -# navbar with shoes, accessories, 50% off, and about
 .navigation.font-2
 	%nav
-		.navbar-collapse.no-padding#primary-navigation
+		.navbar-collapse.no-padding#primary-navigation.wide-text
 			%ul.nav.navbar-nav.primary-navbar{"data-hook":true}
 
 				-# Menu items for the taxonomies
@@ -36,6 +36,7 @@
 						%span= "|"
 
 				%li= link_to Spree.t(:about), page_path('about')
+			%hr.col-md-12.col-sm-12.breadcrumb-hr
 
 -# Header for printed documents
 %section.visible-print-block

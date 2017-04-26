@@ -1034,6 +1034,7 @@ a:focus {
 .top-bar .primary-navbar > li{
     padding-left: 0;
     padding-right: 0;
+    padding-top: 5px;
 }
 
 .primary-navbar li > a{
@@ -1045,6 +1046,12 @@ a:focus {
     position: relative;
     text-transform: uppercase;
 }
+
+.wide-text > .primary-navbar > li > a {
+    font-size: 1.1em;
+    letter-spacing: 6px;
+}
+
 .primary-navbar li > a:hover, .primary-navbar li > a:focus, .primary-navbar > li.active > a,
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
     background-color: transparent;
@@ -1053,6 +1060,14 @@ a:focus {
 
 .primary-navbar > span {
     font-size: 1.2em;
+    margin-left: 31px;
+    margin-right: 36px;
+}
+
+.breadcrumb-hr {
+    margin-top: 0px;
+    height: 2px;
+    background-color: #b9b8b8;
 }
 
 .navbar-toggle .icon-bar{
@@ -1079,6 +1094,11 @@ a:focus {
 }
 .navigation .dropdown-menu  li{
     position: relative;
+}
+
+/*--- remove margin from social media icons ---*/
+.social-media-icons {
+    margin-left: 10px !important;
 }
 
 /*---Header Navigation Megamenu---*/
@@ -1918,6 +1938,11 @@ a:focus {
     -o-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
 }
+
+.thumbnail-inline {
+    width: auto !important;
+}
+
 .flipper .front, .flipper .back {
     transition: 0.6s;
     -webkit-transition: 0.6s;

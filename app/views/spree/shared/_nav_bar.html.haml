@@ -20,10 +20,10 @@
 				%ul.top-elements
 					-# Social Links
 					- social_links.each do |sl|
-						%li
+						%li.social-media-icons
 							= link_to sl[:url], class:"size-24", target:"_blank" do
 								- icon_class = "ion-social-" + sl[:name].downcase
-								%i{:class => icon_class }
+								%i{:class => icon_class}
 
 					- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
 						- if taxon.name == "DT Club"

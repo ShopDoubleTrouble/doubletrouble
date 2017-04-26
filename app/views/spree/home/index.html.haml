@@ -4,6 +4,33 @@
 - content_for :breadcrumb_large_content do
 	#main-logo= image_tag "dt.svg"
 
+%section.bg-txt
+	.row
+
+		.col-md-6.col-sm-6
+			.img-block
+				= image_tag "dt.svg"
+
+		.col-md-6.col-sm-6.about-det
+			%p
+				Al crear tu cuenta en nuestro sitio, tendrás el privilegio de
+				pertenecer al D.T. Club, donde instantaneamente tendrás acceso a los
+				últimos estilos de la moda futura universal y podrás pedirlos antes
+				que toda la humanidad.
+
+			%p
+				En el transcurso de 5 a 10 dias,  tendrás en la puerta de tu casa tus
+				esperadas prendas. Si la prenda que escogiste no fue elegible para
+				comprar ( el cual pasara solo el 10% de las veces), no te preocupes,
+				tu crédito queda en tu cuenta del D.T Club o a su vez se te reversan
+				los cargos a tu tarjeta si así lo deseas.
+
+			= link_to :account, class:["btn theme-btn"] do
+				%span.btn-txt
+					¡Crea tu cuenta ya, para que empiece la diversión!
+				%i.btn-icon.icon.ion-chevron-right
+
+
 -# Very similar to products/Index page
 .row.space-100
 	%aside.col-xs-12.prod-categories.cat-with-sidebar

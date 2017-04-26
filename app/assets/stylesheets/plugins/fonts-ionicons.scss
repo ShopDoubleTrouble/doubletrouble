@@ -1295,7 +1295,17 @@
 
 .ion-social-euro-outline:before { content: "\f4e0"; }
 
-.ion-social-facebook:before { content: "\f231"; }
+.ion-social-facebook:before {  
+  content: " ";
+  position: absolute;
+  width: 32px !important;
+  height: 32px;
+  top: -5px;
+  background-image: url(../navbar/facebook.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 8.5px;
+}
 
 .ion-social-facebook-outline:before { content: "\f230"; }
 
@@ -1325,7 +1335,17 @@
 
 .ion-social-html5-outline:before { content: "\f4e2"; }
 
-.ion-social-instagram:before { content: "\f351"; }
+.ion-social-instagram:before { 
+  content: " ";
+  position: absolute;
+  width: 32px !important;
+  height: 32px;
+  top: -5px;
+  background-image: url(../navbar/instagram.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 8.5px;
+}
 
 .ion-social-instagram-outline:before { content: "\f350"; }
 
@@ -1377,7 +1397,17 @@
 
 .ion-social-twitch-outline:before { content: "\f4ed"; }
 
-.ion-social-twitter:before { content: "\f243"; }
+.ion-social-twitter:before { 
+  content: " ";
+  position: absolute;
+  width: 32px !important;
+  height: 32px;
+  top: -5px;
+  background-image: url(../navbar/twitter.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 8.5px;
+}
 
 .ion-social-twitter-outline:before { content: "\f242"; }
 
