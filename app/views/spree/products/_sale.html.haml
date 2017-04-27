@@ -1,40 +1,11 @@
-- url = spree.product_url product, :taxon_id => @taxon&.id
+-url = spree.product_url product
+-name = product.name
 
-.thumbnail-wrap.thumbnail-inline{data:{hook:"products_list_item"},
-	itemscope:true, itemtype:"https://schema.org/Product"}
+.col-md-4.col-sm-4.short-container
+	-# Show placeholder if there is no image.
+	.sale-promotion-image
+		- image_url = product.images&.first.nil? ? "noimage/product.png" : product.images.first.attachment.url(:product)
+		= image_tag_generator_for_product url, image_url
 
-	.thumbnail
-		.thumbnail-img
-
-			-# Flipper
-			.flipper
-
-				-# Show a single static image
-				- if product.images.length < 2
-					%div
-						-# Show placeholder if there is no image.
-							Uses SAFE NAVIGATION from ruby 2.3.1
-						- image_url = product.images&.first.nil? ? "noimage/product.png" : product.images.first.attachment.url(:product)
-						= image_tag_generator_for_product url, image_url
-				- else
-
-					-# There are at least two images, enough to make an animated flipper
-					- for image in [ product.images.first, product.images[1] ] do
-
-						-# Make both faces of the animated flipper
-						%div{class:cycle("front", "back")}
-							= image_tag_generator_for_product url, image.attachment.url(:product)
-
-		-# Caption
-		.caption
-
-			.caption-title.space-15
-				= link_to url, class:'title-2' do
-					= product.name
-
-			.caption-text.font-3
-				%span.size-18.black-color
-					= display_price(product)
-
-		-# Add to cart button
-		#cart-form{data:{hook:"cart_form"}}= render partial:'spree/products/cart_form_2', locals:{product: product}
+	.promotion-cover
+		= image_tag_generator_for_product url, "products/50-off-frame.png"

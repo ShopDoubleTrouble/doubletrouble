@@ -1,22 +1,30 @@
 -# FOOTER
 %footer.footer.text-center.hidden-print
-	%section.space-70.footer-bg.white-color
-		.container.theme-container
+	%section.footer-bg.white-color
+		.footer-column.boost-up
 			= link_to :root do
 				%figure#logo{"data-hook":true}= image_tag "dt.svg"
-			%h2.logo-title.font-2
+		.footer-column.align-left
+			#main-logo= image_tag "dt_long.svg"
+			-# Menu items for the taxonomies
+			%ul.footer-items
+				- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+					- if taxon.name != "SALE 50% OFF" && taxon.name != "Accessories" && taxon.name != "Shoes" && taxon.name != "DT Club"
+						%li= nav_bar_taxon taxon.root, 5
+				- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
+					- if taxon.name == "DT Club"
+						%li= nav_bar_taxon taxon.root, 5
 			%ul.list-items.font-2.upper-text
 				- social_links.each do |sl|
-					%li= link_to sl[:name], sl[:url], class:"hover-color", target:"_blank"
-			%br
-			%p.font-2.upper-text
-				= link_to Spree.t(:terms_of_service), page_path(:terms)
-	%section.black-bg.space-15
-		%p.copy-rights.font-2
-			©
-			= Date.current.year
-			= Spree.t :developed_by
-			= link_to "http://bluetideconsulting.com/" do
-				%b BlueTide Consulting
-			,
-			= Spree.t :all_rights_reserved
+					%li.social-media-icons.transparent-icons
+						= link_to sl[:url], class:"size-24", target:"_blank" do
+							- icon_class = "transparent-png-" + sl[:name].downcase
+							%div{:class => icon_class}
+		.floating-footer
+			%p.copy-rights.font-2
+				Copyright ©
+				= Date.current.year
+				= link_to "http://shopdoubletrouble.com/" do
+					%b Shop Double Trouble
+				,
+				= Spree.t :all_rights_reserved

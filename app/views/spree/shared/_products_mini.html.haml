@@ -26,12 +26,13 @@
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
 
-	.row.text-center
-		-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
-		= render Spree::Product.in_taxons(sale_taxon_number).first(4),
-			partial:'spree/products/promotions',
-			layout:'spree/layouts/bootstrap_grid_third',
-			cached:true
+	-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
+	-sale_products = products.in_taxons(sale_taxon_number).first(3)
+	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
+		-sale_products.each do |sp|
+			= render partial: 'spree/products/sale',
+				locals: { product: sp }
+
 
 	.row.text-center
 		= render products.reverse_order.first(4),

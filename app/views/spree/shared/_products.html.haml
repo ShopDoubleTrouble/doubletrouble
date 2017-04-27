@@ -20,11 +20,12 @@
 
 - if products.any?
 	.row.text-center
-		-# Slides
-		= render collection:products,
-			partial:'spree/products/product',
-			layout:'spree/layouts/bootstrap_grid_third',
-			cached:true
+		.left-align-products
+			-# Slides
+			= render products,
+				partial:'spree/products/product',
+				layout:'spree/layouts/bootstrap_grid_third',
+				cached:true
 
 .clearfix
 

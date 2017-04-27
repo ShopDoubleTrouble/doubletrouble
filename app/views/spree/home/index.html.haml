@@ -4,14 +4,15 @@
 - content_for :breadcrumb_large_content do
 	#main-logo= image_tag "dt.svg"
 
-%section.bg-txt
+%section.bg-txt.f7f7f7.high-margin
 	.row
 
-		.col-md-6.col-sm-6
+		.col-md-5.col-sm-5
 			.img-block
 				= image_tag "dt.svg"
 
-		.col-md-6.col-sm-6.about-det
+		.col-md-5.col-sm-5.about-det
+			= image_tag "about/about.png"
 			%p
 				Al crear tu cuenta en nuestro sitio, tendrás el privilegio de
 				pertenecer al D.T. Club, donde instantaneamente tendrás acceso a los
@@ -32,7 +33,7 @@
 
 
 -# Very similar to products/Index page
-.row.space-100
+.row.space-10
 	%aside.col-xs-12.prod-categories.cat-with-sidebar
 		#grid-view.tab-pane.fade.active.in
 			- cache(cache_key_for_products) do

@@ -35,7 +35,7 @@
 
     <% end %>
 
-    <div class="prod-btns" data-hook="product_price">
+    <div class="prod-btns wide-btns" data-hook="product_price">
       <% if product.price_in(current_currency) && !product.price.nil? %>
         <% if product.can_supply? %>
 
@@ -45,7 +45,6 @@
               id: 'add-to-cart-button',
               type: :submit do %>
 
-                <i class="icon ion-ios-plus-empty white-color size-24"></i>
                 <%= Spree.t(:add_to_cart) %>
 
             <% end %>
