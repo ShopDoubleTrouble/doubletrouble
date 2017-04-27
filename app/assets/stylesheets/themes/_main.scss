@@ -1833,10 +1833,12 @@ a:focus {
 }
 .about-det p{
     line-height: 2;
+    color: #383838;
+    font-size: 0.9em;
 }
 .about-det .btn {
     border-color: #ccc;
-    margin-top: 65px;
+    // margin-top: 65px;
     margin-bottom: 100px;
 }
 .about-det .btn .btn-icon {
@@ -1846,6 +1848,11 @@ a:focus {
 .about-det img {
     width: 56%;
     margin-left: 20%;
+}
+
+.f7f7f7 .about-det p img {
+    width: 20px;
+    margin: 0 2px 10px;
 }
 
 .div-tab { display: table; width: 56%;}
