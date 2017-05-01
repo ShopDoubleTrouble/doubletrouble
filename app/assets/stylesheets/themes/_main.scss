@@ -1029,6 +1029,10 @@ a:focus {
     width: 100%;
     text-align: center;
 }
+.main-header .primary-navbar {
+    text-align: right;
+    padding-right: 62px;
+}
 .primary-navbar > li.dropdown > a.dropdown-toggle::before {
     border: medium none;
     content: "\33";
@@ -1056,7 +1060,7 @@ a:focus {
 }
 .primary-navbar > li > a{
     font-size: 15px;
-    // padding: 10px 0px;
+    padding: 18px 5px;
     position: relative;
     text-transform: uppercase;
 }
@@ -1082,6 +1086,9 @@ a:focus {
     margin-top: 0px;
     height: 2px;
     background-color: #b9b8b8;
+    width: 93%;
+    margin-left: 2%;
+    margin-bottom: 60px;
 }
 
 .navbar-toggle .icon-bar{
@@ -1490,21 +1497,22 @@ a:focus {
     bottom: 0;
     color: #ffffff;
     font-size: 10px;
-    height: 25px;
     line-height: 20px;
     position: absolute;
     right: 9px;
-    top: 10px;
+    top: 11px;
     text-align: center;
-    width: 25px;
+    height: 22px;
+    width: 22px;
     background-color: black;
 }
 
 .items-count > b {
     position: absolute;
     top: 3px;
-    left: 11px;
-    font-size: 1.5em;
+    left: 7px;
+    font-size: 1.6em;
+    font-weight: lighter;
 }
 
 .icon-cube {
@@ -1574,8 +1582,8 @@ a:focus {
     background-image: url(navbar/search-icon.png);
     background-size: contain;
     background-repeat: no-repeat;
-    margin-top: 8.5px;
-    width: 85%;
+    margin-top: 6.5px;
+    width: 110%;
 
     font-family: "Ionicons";
 
@@ -1623,7 +1631,7 @@ a:focus {
     position: absolute;
     width: 35px !important;
     height: 35px;
-    top: -2px;
+    top: 0px;
     background-image: url(navbar/cart-icon.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -1631,7 +1639,6 @@ a:focus {
     width: 85%;
     font-family: "Ionicons";
 }
-
 
 /* popup box */
 .top-bar {
@@ -1769,7 +1776,7 @@ a:focus {
 /*Search Popup*/
 .pop-up-box.search-popup {
     padding: 0;
-    right: 100px;
+    // right: 100px;
     width: 600px;
 }
 .search-popup .form-group{
@@ -4104,7 +4111,9 @@ table {
 ********************************/
 /*---------------- Footer Style 1 ------------------------ */
 .footer-bg{
-    background-color: #333333;
+    // background-color: #333333;
+    background: url(background/hammock-whitened.png);
+    background-size: cover;
 }
 .footer-bg .logo-title{
     margin: 20px 0;
@@ -4322,6 +4331,7 @@ table {
     }
 
 }
+
 @media (min-width:768px) {
     .navigation .primary-navbar li .dropdown-menu {
         opacity: 0;
@@ -4381,6 +4391,13 @@ table {
         top: 10%;
     }
 }
+
+@media (max-width:968px) {
+    .short-container {
+        display: none;
+    }
+}
+
 @media (min-width:992px){
     /*    .style-5.sync1 img{
             max-width: none;
@@ -4422,6 +4439,8 @@ table {
     .top-right {
         position: absolute;
         right: 0;
+        top: 71px;
+        left: -15%;
     }
     .hdr-stl-2 .primary-navbar .mega-dropdown-menu {
         width: auto;
@@ -4525,6 +4544,12 @@ table {
         width: 150px;
     }
 
+    // logo
+    .navbar-brand {
+        padding-top: 0;
+        padding-bottom: 30px;
+    }
+
 }
 @media (max-width:767px) {
 
@@ -4580,10 +4605,16 @@ table {
     }
     .primary-navbar > li > a {
         padding: 10px 20px;
+        letter-spacing: 0.3px !important;
     }
     .primary-navbar > li{
         padding: 0;
     }
+
+    .primary-navbar > span {
+        margin: 0;
+    }
+
     .primary-navbar > li.dropdown > a.dropdown-toggle::before{
         right: 15px;
     }
@@ -4595,6 +4626,15 @@ table {
         margin-top: 30px;
         min-height: auto;
     }
+
+    .cart-icon {
+        margin-right: 30px;
+    }
+
+    .sale-promotion-div {
+        display: none !important;
+    }
+
     /**/
 
     /*--Header --*/
@@ -4610,12 +4650,18 @@ table {
     }
     .navbar-brand, .primary-navbar > li, .top-right{
         padding-top: 0;
+        // margin-right: 11%;
+        margin: 0;
     }
+
+    .btn.theme-btn {
+        left: 12%;
+    }
+
     .pop-up-box.search-popup, .header-topbar .pop-up-box.search-popup {
         right: 1px;
         width: 95%;
     }
-
 
     /*--Header style-2 --*/
 
@@ -5076,4 +5122,21 @@ table {
     .view-tabs li:first-child {
         margin-right: 10px;
     }
+}
+
+// custom
+a:hover {
+    color: #b76e79!important;
+}
+
+.color-primary:hover, .primary-color:hover {
+    color: rgba(0, 0, 0, 0)!important;
+}
+
+.theme-btn:hover {
+    color: black!important;
+}
+
+.row {
+    margin: 0;
 }

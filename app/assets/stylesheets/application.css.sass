@@ -57,13 +57,17 @@ ol.breadcrumb.breadcrumb-menubar
   padding: 0px
 
 .breadcrumb-bg
-  background-image: image-url("breadcrumb.png")
-  background-position: 85% top
+  background-image: image-url("background/flower_crown.jpg")
+  background-size: cover
   background-repeat: no-repeat
+  height: 762px
 
 //- Alert Dialogs - Use default mixins
 .alert-error
   @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text)
+.alert-error
+  position: relative
+  top: -47px
 .alert-notice
   @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text)
 
@@ -75,6 +79,11 @@ ol.breadcrumb.breadcrumb-menubar
   height: 92px
 #main-logo img
   max-height: 250px
+
+.breadcrumb-bg #main-logo img
+  max-height: 310px
+  margin-top: 138px
+  margin-left: 70px
 
 @media (max-width:$screen-sm-min)
   #main-logo
