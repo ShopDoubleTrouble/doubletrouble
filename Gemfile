@@ -31,7 +31,6 @@ gem 'high_voltage',
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3'
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'forgery'
@@ -93,7 +92,7 @@ gem 'paperclip'
 gem 'aws-sdk-v1' # DEPRECATED
 gem 'aws-sdk', '~> 2'
 
-# # Private Gems
-# source 'https://gem.fury.io/rzubieta/' do
-#   gem 'cloud_accounting'
-# end
+# Private Gems
+source 'https://gem.fury.io/rzubieta/' do
+  gem 'cloud_accounting'
+end
