@@ -1,0 +1,107 @@
+{
+  "name": "doubletrouble",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "BUNDLE_GEM__FURY__IO": {
+      "required": true
+    },
+    "EXPEDITEDSSL_ID": {
+      "required": true
+    },
+    "HEROKU_POSTGRESQL_WHITE_URL": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "MIN_THREADS": {
+      "required": true
+    },
+    "NEOGATEWAY_ACCOUNT_ID": {
+      "required": true
+    },
+    "NEOGATEWAY_MERCHANT_ID": {
+      "required": true
+    },
+    "NEOGATEWAY_TERMINAL_ID": {
+      "required": true
+    },
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LOG": {
+      "required": true
+    },
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    },
+    "PROXIMO_MASK": {
+      "required": true
+    },
+    "PROXIMO_URL": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_MAX_THREADS": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "REDIS_URL": {
+      "required": true
+    },
+    "S3_BUCKET_NAME": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_USERNAME": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "required": true
+    },
+    "ZOHO_AUTHTOKEN": {
+      "required": true
+    },
+    "ZOHO_ORGANIZATION_ID": {
+      "required": true
+    },
+    "ZOHO_TAX_ID": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "expeditedssl",
+    "newrelic",
+    "papertrail",
+    "heroku-postgresql",
+    "proximo",
+    "heroku-redis",
+    "sendgrid"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
