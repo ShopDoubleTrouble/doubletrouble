@@ -21,7 +21,7 @@
 - if products.any?
 	.row.text-center
 		-# Slides
-		= render products.first(4),
+		= render products.reverse_order.first(60),
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
@@ -35,7 +35,7 @@
 
 
 	.row.text-center
-		= render products.reverse_order.first(4),
+		= render products.first(4),
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
