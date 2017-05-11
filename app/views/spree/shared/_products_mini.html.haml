@@ -22,33 +22,35 @@
 	.row.text-center
 		-# Slides
 		-all_products = products.reverse_order.first(60)
+	
+		-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
+		-all_sale_products = products.in_taxons(sale_taxon_number).reverse_order.first(6)
+	
 		= render all_products[0..7],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
 
-	-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
-	-sale_products = products.in_taxons(sale_taxon_number).first(3)
+	-sale_products = all_sale_products[0..2]
 	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
 		-sale_products.each do |sp|
 			= render partial: 'spree/products/sale',
 				locals: { product: sp }
 
 	.row.text-center
-		= render all_products[8..39],
+		= render all_products[8..48],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
 
-	-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
-	-sale_products = products.in_taxons(sale_taxon_number).first(3)
+	-sale_products_2 = all_sale_products[3..5]
 	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
-		-sale_products.each do |sp|
+		-sale_products_2.each do |sp|
 			= render partial: 'spree/products/sale',
 				locals: { product: sp }
 
 	.row.text-center
-		= render all_products[40..59],
+		= render all_products[48..59],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true	
