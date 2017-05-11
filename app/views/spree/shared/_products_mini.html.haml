@@ -21,7 +21,8 @@
 - if products.any?
 	.row.text-center
 		-# Slides
-		= render products.reverse_order.first(60),
+		-all_products = products.reverse_order.first(60)
+		= render all_products[0..7],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
@@ -33,12 +34,24 @@
 			= render partial: 'spree/products/sale',
 				locals: { product: sp }
 
-
 	.row.text-center
-		= render products.first(4),
+		= render all_products[8..39],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
+
+	-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
+	-sale_products = products.in_taxons(sale_taxon_number).first(3)
+	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
+		-sale_products.each do |sp|
+			= render partial: 'spree/products/sale',
+				locals: { product: sp }
+
+	.row.text-center
+		= render all_products[40..59],
+			partial:'spree/products/product',
+			layout:'spree/layouts/bootstrap_grid_third',
+			cached:true	
 
 .clearfix
 

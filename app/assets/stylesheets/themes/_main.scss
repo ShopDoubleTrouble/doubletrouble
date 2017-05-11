@@ -5145,3 +5145,13 @@ a:hover {
     margin: 0;
     width: 100%;
 }
+
+.space-15 {
+    min-height: 79px;
+}
+
+// selected products showing three at a time (fixed by no margin)
+.left-align-products {
+    text-align: left;
+    margin-left: 0;
+}

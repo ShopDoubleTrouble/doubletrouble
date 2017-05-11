@@ -50,7 +50,7 @@
 
 							-# Menu items for the taxonomies
 							- Spree::Taxonomy.includes(:root, :translations).each do |taxon|
-								- if taxon.name != "DT Club" && taxon.name != "SALE 50% OFF" && taxon.name != "Accessories" && taxon.name != "Shoes"
+								- if taxon.name != "DT Club" && taxon.name != "SALE 50% OFF" && taxon.name != "ACCESSORIES" && taxon.name != "SHOES"
 									= nav_bar_taxon taxon.root, 5
 
 							%li
