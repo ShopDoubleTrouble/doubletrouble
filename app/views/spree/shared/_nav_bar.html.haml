@@ -47,6 +47,9 @@
 
 							-# "products" menu item
 							-# %li= link_to Spree.t(:products), products_url
+			
+							-#about us
+							%li= link_to Spree.t(:about), page_path('about')
 
 							-# Menu items for the taxonomies
 							- Spree::Taxonomy.includes(:root, :translations).each do |taxon|

@@ -1030,7 +1030,7 @@ a:focus {
     text-align: center;
 }
 .main-header .primary-navbar {
-    text-align: right;
+    text-align: left;
     padding-right: 62px;
 }
 .primary-navbar > li.dropdown > a.dropdown-toggle::before {
@@ -5146,9 +5146,12 @@ a:hover {
     width: 100%;
 }
 
+
+
 .space-15 {
     min-height: 79px;
 }
+
 
 // selected products showing three at a time (fixed by no margin)
 .left-align-products {
