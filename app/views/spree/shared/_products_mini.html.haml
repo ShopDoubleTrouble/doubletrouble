@@ -26,34 +26,39 @@
 		-sale_taxon_number = Spree::Taxon.where(name: "SALE 50% OFF").first.id
 		-all_sale_products = products.in_taxons(sale_taxon_number).reverse_order.first(6)
 	
+	- unless all_products[0..7] == nil
 		= render all_products[0..7],
 			partial:'spree/products/product',
 			layout:'spree/layouts/bootstrap_grid_third',
 			cached:true
 
-	-sale_products = all_sale_products[0..2]
-	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
-		-sale_products.each do |sp|
-			= render partial: 'spree/products/sale',
-				locals: { product: sp }
+	- unless all_sale_products[0..2] == nil
+		-sale_products = all_sale_products[0..2]
+		.thumbnail-wrap.thumbnail-inline.sale-promotion-div
+			-sale_products.each do |sp|
+				= render partial: 'spree/products/sale',
+					locals: { product: sp }
 
-	.row.text-center
-		= render all_products[8..47],
-			partial:'spree/products/product',
-			layout:'spree/layouts/bootstrap_grid_third',
-			cached:true
+	- unless all_products[8..47] == nil
+		.row.text-center
+			= render all_products[8..47],
+				partial:'spree/products/product',
+				layout:'spree/layouts/bootstrap_grid_third',
+				cached:true
 
-	-sale_products_2 = all_sale_products[3..5]
-	.thumbnail-wrap.thumbnail-inline.sale-promotion-div
-		-sale_products_2.each do |sp|
-			= render partial: 'spree/products/sale',
-				locals: { product: sp }
+	- unless all_sale_products[3..5] == nil
+		-sale_products_2 = all_sale_products[3..5]
+		.thumbnail-wrap.thumbnail-inline.sale-promotion-div
+			-sale_products_2.each do |sp|
+				= render partial: 'spree/products/sale',
+					locals: { product: sp }
 
-	.row.text-center
-		= render all_products[48..59],
-			partial:'spree/products/product',
-			layout:'spree/layouts/bootstrap_grid_third',
-			cached:true	
+	- unless all_products[48..59] == nil				
+		.row.text-center
+			= render all_products[48..59],
+				partial:'spree/products/product',
+				layout:'spree/layouts/bootstrap_grid_third',
+				cached:true	
 
 .clearfix
 
