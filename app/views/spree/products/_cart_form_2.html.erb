@@ -11,13 +11,13 @@
     itemprop="offers"
     itemscope itemtype="https://schema.org/Offer"
     >
-    <div id="jajaja">jajaja</div>
+
     <% if product.variants_and_option_values(current_currency).any? %>
 
       <%# Select variant %>
       <div id="product-variants" class="form-group selectpicker-wrapper">
 
-        <label class="size-13 testclass">
+        <label class="size-13">
           <span class="font-2"><%= Spree.t(:tallas) %></span>
         </label>
 
@@ -41,7 +41,7 @@
 
           <%= number_field_tag :quantity, 1, class: 'hidden', min: 1 %>
           <div class="add-to-cart">
-            <%= button_tag class: 'theme-btn-1 btn cart-btn',
+            <%= button_tag class: 'theme-btn-1 btn cart-btn testclass',
               id: 'add-to-cart-button',
               type: :submit do %>
 
