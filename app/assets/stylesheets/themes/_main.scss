@@ -5158,3 +5158,8 @@ a:hover {
     text-align: left;
     margin-left: 0;
 }
+
+// hide breadcrumbs
+.site-breadcrumb {
+  display: none!important;
+}
